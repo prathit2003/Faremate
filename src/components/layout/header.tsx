@@ -22,7 +22,7 @@ const Header = () => {
           </a>
           <span className="text-primary">|</span>
           <a
-            href="/login"
+            href="/signin"
             className="text-subheading hover:underline text-[12px] sm:text-sm md:text-lg lg:text-xl  hover:text-primary hover:scale-102 transition-all duration-300"
           >
             Login{" "}

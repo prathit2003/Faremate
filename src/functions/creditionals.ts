@@ -1,5 +1,5 @@
 import creditionalsStore from "@/stateStore/creditionals";
-
+import axios from "axios";
 export const handleOnchange = (
   e: React.ChangeEvent<HTMLInputElement>,
   id: string
@@ -33,6 +33,21 @@ export const handleSignin = (e: React.FormEvent<HTMLFormElement>) => {
 };
 
 export const handleSignup = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
   const { email, password, confirmPassword, userName } =
     creditionalsStore.getState();
+  if (password !== confirmPassword) {
+    alert("Passwords do not match");
+    return;
+  }
+  const signup = async () => {
+    const response = await axios.post("/api/signup", {
+      method: "POST",
+      body: JSON.stringify({ email, userName, password }),
+      headers: { "Content-Type": "application/json" },
+    });
+    if (response.status === 200) {
+      return;
+    }
+  };
 };

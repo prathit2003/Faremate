@@ -14,10 +14,10 @@ const Button = ({
   return (
     <>
       {color === "primary" && icon === "search" && (
-        <button className="bg-primary text-white  py-1  md:py-1.5 rounded-lg md:rounded-xl flex items-center justify-center cursor-pointer hover:scale-102 hover:bg-secondary transition-all duration-300 w-fit">
+        <button className="bg-primary text-white  py-1  md:py-1.5 px-2 md:px-4 rounded-lg md:rounded-xl flex items-center justify-center cursor-pointer hover:scale-102 hover:bg-secondary transition-all duration-300 w-fit">
           <SearchIcon
             className="mr-1 md:mr-2"
-            sx={{ fontSize: { xs: 16, sm: 20, md: 28, lg: 36 } }}
+            sx={{ fontSize: { xs: 10, sm: 25, md: 25, lg: 30 } }}
           />
 
           <p className="text-xs md:text-sm lg:text-lg xl:text-xl md:-mt-1 mr-1 md:mr-0">
@@ -28,14 +28,14 @@ const Button = ({
 
       {color === "secondary" && icon !== "" && (
         <button
-          className={`card  py-1  md:py-1.5  rounded-lg md:rounded-xl flex items-center justify-center cursor-pointer hover:scale-102 hover:bg-secondary transition-all duration-300 ${
+          className={`card  py-1  md:py-1.5 px-2 md:px-4 rounded-lg md:rounded-xl flex items-center justify-center cursor-pointer hover:scale-102 hover:bg-secondary transition-all duration-300 ${
             icon === "pin" ? "w-fit" : "w-full"
           }`}
         >
           {icon === "pin" && (
             <LocationPinIcon
               className="mr-1 md:mr-2"
-              sx={{ fontSize: { xs: 16, sm: 20, md: 28, lg: 36 } }}
+              sx={{ fontSize: { xs: 12, sm: 25, md: 25, lg: 30 } }}
             />
           )}
           {icon === "google" && (

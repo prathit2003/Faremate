@@ -1,5 +1,5 @@
 "use client";
-
+import { handleSignup } from "@/functions/creditionals";
 import Input from "@/components/ui/input";
 import Button from "@/components/ui/button";
 import Image from "next/image";
@@ -21,9 +21,9 @@ export default function Signup() {
           <div className="flex flex-col space-y-1 md:space-y-2 mt-1 md:mt-2">
             <Input
               type="text"
-              labal="Full Name"
+              labal="FullName"
               placeholder="Enter your full name"
-              id="fullname"
+              id="username"
             />
             <Input
               type="email"
@@ -48,8 +48,8 @@ export default function Signup() {
           {/* Signup button */}
 
           <button
-            type="submit"
-            className="bg-secondary text-white py-3 rounded-lg font-medium hover:bg-white hover:text-secondary transition-all duration-300 mt-2 md:mt-3 w-full flex items-center justify-center"
+            onClick={handleSignup}
+            className="bg-secondary text-white py-3 rounded-lg font-medium hover:bg-white hover:text-secondary transition-all duration-300 mt-2 md:mt-3 w-full flex items-center justify-center cursor-pointer"
           >
             Sign Up
           </button>

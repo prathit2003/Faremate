@@ -1,5 +1,6 @@
 import creditionalsStore from "@/stateStore/creditionals";
 import axios from "axios";
+import { signIn } from "next-auth/react";
 export const handleOnchange = (
   e: React.ChangeEvent<HTMLInputElement>,
   id: string
@@ -19,7 +20,7 @@ export const handleOnchange = (
     case "confirmPassword":
       setConfirmPassword(value);
       break;
-    case "userName":
+    case "username":
       setUserName(value);
       break;
     default:
@@ -27,27 +28,48 @@ export const handleOnchange = (
   }
 };
 
-export const handleSignin = (e: React.FormEvent<HTMLFormElement>) => {
+export const handleSignin = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
   const { email, password } = creditionalsStore.getState();
+  const result = await signIn("credentials", {
+    redirect: true,
+    email,
+    password,
+    callbackUrl: "/dashboard",
+  });
+  if (result?.status !== 200) {
+    alert("Invalid credentials");
+    return;
+  }
 };
 
-export const handleSignup = (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
+export const handleSignup = async (e: React.MouseEvent) => {
   const { email, password, confirmPassword, userName } =
     creditionalsStore.getState();
+
   if (password !== confirmPassword) {
     alert("Passwords do not match");
     return;
   }
-  const signup = async () => {
+
+  try {
+    // Call your signup API
     const response = await axios.post("/api/signup", {
-      method: "POST",
-      body: JSON.stringify({ email, userName, password }),
-      headers: { "Content-Type": "application/json" },
+      email,
+      username: userName,
+      password,
     });
+
     if (response.status === 200) {
-      return;
+      await signIn("credentials", {
+        redirect: true,
+        email,
+        password,
+        callbackUrl: "/dashboard",
+      });
     }
-  };
+  } catch (error: any) {
+    console.error("Signup failed:", error);
+    alert(error.response?.data?.error || "Signup failed");
+  }
 };

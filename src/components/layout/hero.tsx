@@ -27,7 +27,7 @@ const Hero = () => {
           className="w-1/8 md:w-1/6 aspect-square -mb-6 sm:-mb-9 md:-mb-12"
         />
       </div>
-      <Button color="primary" text="search on map" icon="search" />
+      <Button color="primary" text="Get Started" icon="search" />
     </div>
   );
 };
